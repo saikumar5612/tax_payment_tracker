@@ -1,0 +1,15 @@
+# Ignore IDE-specific files
+.idea/
+__pycache__/
+
+# Ignore virtual environment
+.venv/
+
+# Ignore migrations if not needed in version control
+migrations/
+
+# Ignore instance-specific files
+instance/
+
+# Ignore compiled Python files
+*.pyc

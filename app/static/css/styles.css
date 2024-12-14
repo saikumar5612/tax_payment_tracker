@@ -1,0 +1,144 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+/* Container for Content */
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Header Styling */
+h1 {
+    text-align: center;
+    color: #2C3E50; /* Dark Blue for the main heading */
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+form div {
+    margin: 10px 0;
+}
+
+form label {
+    font-weight: bold;
+    color: #2C3E50;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+form button {
+    background-color: #3498db; /* Blue */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #2980b9; /* Darker blue */
+}
+
+/* Filter Form Styling */
+h2 {
+    color: #34495e; /* Darker Gray for subheadings */
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+}
+
+table th {
+    background-color: #2C3E50; /* Dark Blue for header */
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light gray for even rows */
+}
+
+table tr:hover {
+    background-color: #ddd; /* Light hover effect */
+}
+
+table td button {
+    background-color: #e74c3c; /* Red for delete button */
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+table td button:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}
+
+/* Summary Table Styling */
+#summary-table {
+    margin-top: 30px;
+}
+
+#summary-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#summary-table th, #summary-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#summary-table th {
+    background-color: #3498db; /* Blue for summary table header */
+    color: white;
+}
+
+#summary-table td {
+    background-color: #ecf0f1; /* Light gray for summary data */
+}
+
+#summary-table td:nth-child(2) {
+    font-weight: bold;
+}

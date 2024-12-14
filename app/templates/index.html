@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Tax Records</h1>
+
+<!-- Form to Add Tax Record -->
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+    <div>
+        {{ form.company.label }} {{ form.company }}
+    </div>
+    <div>
+        {{ form.amount.label }} {{ form.amount }}
+    </div>
+    <div>
+        {{ form.payment_date.label }} {{ form.payment_date }}
+    </div>
+    <div>
+        {{ form.status.label }} {{ form.status }}
+    </div>
+    <div>
+        {{ form.due_date.label }} {{ form.due_date }}
+    </div>
+    <div>
+        {{ form.submit }}
+    </div>
+</form>
+
+<!-- Filter Form -->
+<h2>Filter Records</h2>
+<form action="{{ url_for('main.index') }}" method="GET">
+    <div>
+        <label for="filter-status">Filter by Status:</label>
+        <select name="status" id="filter-status">
+            <option value="">All</option>
+            <option value="paid" {% if request.args.get('status') == 'paid' %}selected{% endif %}>Paid</option>
+            <option value="unpaid" {% if request.args.get('status') == 'unpaid' %}selected{% endif %}>Unpaid</option>
+        </select>
+    </div>
+    <div>
+        <label for="filter-due-date">Filter by Due Date:</label>
+        <select name="due_date" id="filter-due-date">
+            <option value="">All</option>
+            <option value="04/15/{{ current_year }}" {% if request.args.get('due_date') == '04/15/' + current_year|string %}selected{% endif %}>April 15</option>
+            <option value="06/15/{{ current_year }}" {% if request.args.get('due_date') == '06/15/' + current_year|string %}selected{% endif %}>June 15</option>
+            <option value="09/15/{{ current_year }}" {% if request.args.get('due_date') == '09/15/' + current_year|string %}selected{% endif %}>September 15</option>
+            <option value="01/15/{{ next_year }}" {% if request.args.get('due_date') == '01/15/' + next_year|string %}selected{% endif %}>January 15</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Filter</button>
+    </div>
+</form>
+
+<!-- Summary Table -->
+<h2>Summary</h2>
+<div id="summary-table">
+    <table>
+        <tr>
+            <th>Total Amount</th>
+            <td>${{ total_amount }}</td>
+        </tr>
+        <tr>
+            <th>Tax Rate</th>
+            <td>{{ tax_rate * 100 }}%</td>
+        </tr>
+        <tr>
+            <th>Tax Due</th>
+            <td>${{ tax_due }}</td>
+        </tr>
+    </table>
+</div>
+
+<!-- Records Table -->
+<h2>Tax Records</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Company</th>
+            <th>Amount</th>
+            <th>Payment Date</th>
+            <th>Status</th>
+            <th>Due Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in records %}
+        <tr>
+            <td>{{ record.company }}</td>
+            <td>{{ record.amount }}</td>
+            <td>{{ record.payment_date }}</td>
+            <td>{{ record.status }}</td>
+            <td>{{ record.due_date }}</td>
+            <td>
+                <button onclick="deleteRecord({{ record.id }})">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+
+<!-- JavaScript to handle deletion -->
+<script>
+    function deleteRecord(id) {
+        if (confirm('Are you sure you want to delete this record?')) {
+            fetch(`/delete/${id}`, {
+                method: 'POST',
+            }).then(response => {
+                if (response.ok) {
+                    alert('Record deleted');
+                    location.reload(); // Reload the page to show updated records
+                }
+            });
+        }
+    }
+</script>
